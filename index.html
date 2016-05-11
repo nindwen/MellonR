@@ -1,0 +1,57 @@
+<html>
+      <head>
+            <script src="seedrandom.js"></script>
+            <script>
+
+var words;
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+      if (xhttp.readyState == 4 && xhttp.status == 200) {
+            words = JSON.parse(xhttp.responseText).words;
+      }
+};
+xhttp.open("GET", "words.json", true);
+xhttp.send();
+
+
+function generate() {
+      var seed = document.getElementById('seed').value;
+
+      Math.seedrandom(seed);
+      var secret="";
+      for(i=0;i<5;i++) {
+            secret += words[Math.floor(Math.random()*words.length)]+" ";
+      }
+      document.getElementById('secret').innerHTML = secret;
+      hex = Math.round(255-Math.random()*100).toString(16);
+      console.log(hex);
+      document.getElementsByTagName('body')[0].style.background="#"+hex+hex+hex;
+}
+            </script>
+      <title>MellonR</title>
+      <meta name="viewport" content="width=device-width", initial-scale=1">
+      <style>
+body {
+      max-width: 500px;
+      margin: auto;
+      text-align: center;
+      margin-top: 50px;
+}
+#secret {
+      font-family: monospace;
+}
+#seed {
+      margin: 50px;
+}
+img {
+      max-width: 100%;
+}
+      </style>
+      </head>
+      <body>
+            <img src="2706374_orig.png" />
+
+            <input id="seed" type="password" onchange="generate();" autofocus="autofocus">
+            <p id="secret"></p>
+      </body>
+</html>
