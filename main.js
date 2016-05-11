@@ -5,7 +5,7 @@ xhttp.onreadystatechange = function() {
             words = JSON.parse(xhttp.responseText).words;
       }
 };
-xhttp.open("GET", "words.json", true);
+xhttp.open("GET", "finnish.json", true);
 xhttp.send();
 
 
