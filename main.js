@@ -17,8 +17,12 @@ function generate() {
       for(i=0;i<5;i++) {
             secret += words[Math.floor(Math.random()*words.length)]+" ";
       }
+      secret += "(" + secret.length +")";
       document.getElementById('secret').innerHTML = secret;
       hex = Math.round(255-Math.random()*100).toString(16);
       console.log(hex);
       document.getElementsByTagName('body')[0].style.background="#"+hex+hex+hex;
+
+
+
 }
